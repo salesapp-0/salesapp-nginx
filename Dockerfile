@@ -6,6 +6,10 @@ RUN apt-get update && \
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 
+# Copy Let's Encrypt SSL configuration files
+COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
+COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
+
 EXPOSE 80 443
 
 # Obtain SSL certificates and start Nginx

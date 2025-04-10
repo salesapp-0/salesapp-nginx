@@ -22,6 +22,6 @@ echo "Building the image: $IMAGE_NAME"
 docker build -t $IMAGE_NAME .
 
 echo "Running the container: $CONTAINER_NAME"
-docker run -d --name $CONTAINER_NAME -p 80:80 $IMAGE_NAME
+docker run -d --name $CONTAINER_NAME -p 80:80 -p 443:443 $IMAGE_NAME
 
 echo "Done!"

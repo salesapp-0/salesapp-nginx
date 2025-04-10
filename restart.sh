@@ -24,9 +24,15 @@ fi
 echo "Building the image: $IMAGE_NAME"
 docker build -t $IMAGE_NAME .
 
+echo "Creating a test file in the ACME challenge directory"
+echo "test" > $ACME_CHALLENGE_DIR/.well-known/acme-challenge/test-file
+
 echo "Running the container: $CONTAINER_NAME"
 docker run -d --name $CONTAINER_NAME -p 80:80 -p 443:443 \
     -v $ACME_CHALLENGE_DIR:/usr/share/nginx/html/.well-known/acme-challenge \
     $IMAGE_NAME
+
+echo "Verifying the test file is accessible"
+curl -I http://localhost/.well-known/acme-challenge/test-file
 
 echo "Done!"

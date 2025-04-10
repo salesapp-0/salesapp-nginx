@@ -1,18 +1,8 @@
 FROM nginx:latest
 
-# Install Certbot
-# RUN apt-get update && \
-#     apt-get install -y certbot python3-certbot-nginx
-
-# RUN mkdir /certs
+RUN mkdir -p /usr/share/nginx/html/.well-known/acme-challenge
 
 COPY default.conf /etc/nginx/conf.d/default.conf
-# COPY localhost.crt /certs/localhost.crt
-# COPY localhost.key /certs/localhost.key
-
-# Copy Let's Encrypt SSL configuration files
-# COPY options-ssl-nginx.conf /etc/letsencrypt/options-ssl-nginx.conf
-# COPY ssl-dhparams.pem /etc/letsencrypt/ssl-dhparams.pem
 
 EXPOSE 80 443
 

@@ -4,7 +4,7 @@ CONTAINER_NAME="salesapp_nginx"
 IMAGE_NAME="salesapp_nginx"
 ACME_CHALLENGE_DIR="/root/certificates"
 
-mkdir -p $ACME_CHALLENGE_DIR
+mkdir -p $ACME_CHALLENGE_DIR/.well-known/acme-challenge
 
 if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping the container: $CONTAINER_NAME"

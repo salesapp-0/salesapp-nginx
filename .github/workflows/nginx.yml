@@ -1,4 +1,5 @@
 name: nginx
+
 on:
   push:
     branches: ['main']
@@ -8,6 +9,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
+      - name: create acme challenge directory
+        run: mkdir -p /root/certificates/.well-known/acme-challenge
       - name: shut down the image
         run: docker-compose -p nginx down
       - name: remove dangling images

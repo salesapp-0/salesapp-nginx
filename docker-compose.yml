@@ -1,7 +1,21 @@
+version: '3.8'
+
 services:
   nginx:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: nginx
     ports:
-      - "4173:4173"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /root/certificates/.well-known/acme-challenge:/usr/share/nginx/html/.well-known/acme-challenge
+    restart: unless-stopped
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge

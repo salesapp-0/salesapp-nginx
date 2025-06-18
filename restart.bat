@@ -3,6 +3,7 @@
 set CONTAINER_NAME=salesapp_nginx
 set IMAGE_NAME=salesapp_nginx
 
+
 for /f "tokens=*" %%i in ('docker ps -q -f name=%CONTAINER_NAME%') do set CONTAINER_ID=%%i
 if defined CONTAINER_ID (
     echo Stopping the container: %CONTAINER_NAME%

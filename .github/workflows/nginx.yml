@@ -2,6 +2,7 @@ name: nginx
 on:
   push:
     branches: ['main']
+    
 
 jobs:
   deploy:

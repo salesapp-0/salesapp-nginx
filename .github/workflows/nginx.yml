@@ -1,0 +1,18 @@
+name: nginx
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: shut down the image
+        run: docker-compose -p nginx-proxy down
+      - name: remove dangling images
+        run: docker image prune --all --force
+      - name: rebuild the image
+        run: docker-compose -p nginx-proxy build --no-cache
+      - name: run the image
+        run: docker-compose -p nginx-proxy up -d
